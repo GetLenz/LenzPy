@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='LenzPy',
-    version='0.1.0',
+    version='0.1.1',
     packages=['LenzPy'],
     description='Python wrapper designed to facilitate interaction with the Lenz report API.',
     long_description=open('README.md').read(),

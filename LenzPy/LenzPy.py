@@ -50,6 +50,8 @@ def submit_report(event_name, body, api_key=None):
     url = "https://api.getle.nz/report-api"
     if not api_key:
         api_key = os.getenv("LENZ_API_KEY")
+    if not api_key:
+        raise ValueError("API key is missing. Please provide an API key.")
 
     
     data = {
@@ -105,7 +107,7 @@ def instrument(report_name, api_key=None, flatten_args=False, included_args=None
             if mock:
                 print("Event:", report_name, "Body:", _prepare_body(args_dict, handled_ret, end_time - start_time))
             else:
-                print(submit_report(report_name, _prepare_body(args_dict, handled_ret, end_time - start_time), api_key))
+                submit_report(report_name, _prepare_body(args_dict, handled_ret, end_time - start_time), api_key)
 
             return ret
         return wrapper_lenz
